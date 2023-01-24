@@ -51,9 +51,11 @@ export default function App() {
     });
     //
 
-    //alert(`selected team\n\n.${JSON.stringify(selectedTeam)}`);
+    if (selectedTeam === undefined) {
+      alert("Selected team not found!");
+      return;
+    }
 
-    //if(true) return;
     setLoginErrorMessage("");
     userData.role === USER_ROLE.INTERPRETE
       ? gotoPage(PAGES.HOME_INTERPRETE)
