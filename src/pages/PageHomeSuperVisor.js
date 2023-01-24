@@ -205,7 +205,13 @@ export default function PageHomeSuperVisor({ currentUser, selectedTeam }) {
     let newBons = [...bons, newBon];
     setBons(newBons);
 
-    //setBonsCount(newBons.length);
+    alert(
+      `Nouveau bon ajoute avec succes!\nNombre Sacs: ${
+        newBon.sacs
+      }\nNombres total sacs: ${
+        Number.parseInt(totSacs) + Number.parseInt(newBon.sacs)
+      }.\nTot Tonnage: ${((totSacs + newBon.sacs) * 50) / 1000} Tonnes`
+    );
   };
 
   const onNewRepport = (e) => {

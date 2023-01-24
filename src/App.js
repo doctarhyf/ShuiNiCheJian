@@ -41,11 +41,17 @@ export default function App() {
       return;
     }
 
+    alert(JSON.stringify(userData));
+
+    //if (true) return;
+
     //logged in
     setLoginErrorMessage("");
     userData.role === USER_ROLE.INTERPRETE
       ? gotoPage(PAGES.HOME_INTERPRETE)
       : gotoPage(PAGES.HOME_SUPERVISOR);
+
+    //alert('sup not found!')
   };
 
   const gotoPage = (page) => {
@@ -104,18 +110,7 @@ export default function App() {
         {currentPage === PAGES.HOME_SUPERVISOR && (
           <PageHomeSuperVisor
             currentUser={currentUser}
-            selectedTeam={{
-              id: "d",
-              sup: {
-                nom: "Katanga",
-                phone: "+243 972 556 355, +243 851 595 620",
-                deq: "Mwenz"
-              },
-              deq: {
-                nom: "",
-                phone: ""
-              }
-            }}
+            selectedTeam={selectedTeam}
           />
         )}
 

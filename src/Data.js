@@ -69,7 +69,7 @@ const TEAMS = [
     id: "d",
     sup: {
       nom: "Katanga",
-      phone: "+243 972 556 355, +243 851 595 620",
+      phone: "0972556355",
       deq: "Mwenz"
     },
     deq: {
