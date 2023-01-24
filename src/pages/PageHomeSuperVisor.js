@@ -23,6 +23,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 
+import BlockTitle from "../comps/BlockTitle";
+
 const SECTIONS = {
   PG_HOME: "home",
   PG_NEW_REP: "newrep",
@@ -64,81 +66,109 @@ function SectionNewRepport({
   return (
     <div>
       <Box sx={{ textAlign: "center" }}>
-        <Typography sx={{ p: 2 }}>AJOUT NOUVEAU BON</Typography>
-        <input
-          type="number"
-          value={newNumSacs}
-          onChange={(e) => setNewNumSacs(e.target.value)}
-        />
-
-        {newNumSacs > 0 && (
-          <Button sx={{ ml: 2 }} onClick={onAddNewBon}>
-            AJOUTER
-          </Button>
-        )}
-
-        <Typography sx={{ p: 2 }}>HEURE DE SERVICE</Typography>
-
-        <Box sx={{ textaltextAlign: "center" }}>
-          <FormControl>
-            <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
-            <RadioGroup
-              sx={{ display: "flex", flexDirection: "row" }}
-              aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
-              name="radio-buttons-group"
-            >
-              <FormControlLabel
-                defaultChecked
-                value={HEURES_DE_SERV.MATIN.val}
-                control={<Radio />}
-                label={HEURES_DE_SERV.MATIN.name}
-                onChange={onHeureDeServiceChange}
-              />
-              <FormControlLabel
-                onChange={onHeureDeServiceChange}
-                value={HEURES_DE_SERV.APREM.val}
-                control={<Radio />}
-                label={HEURES_DE_SERV.APREM.name}
-              />
-              <FormControlLabel
-                onChange={onHeureDeServiceChange}
-                value={HEURES_DE_SERV.NUIT.val}
-                control={<Radio />}
-                label={HEURES_DE_SERV.NUIT.name}
-              />
-            </RadioGroup>
-          </FormControl>
-          <Typography variant="h4">
-            {curHeureDeService.from} - {curHeureDeService.to}
-          </Typography>
-        </Box>
-
-        <Typography sx={{ p: 2 }}>CAMIONS RESTES</Typography>
-
-        <input
-          type="number"
-          value={camionsRest}
-          defaultValue={0}
-          onChange={(e) => setCamionsRest(e.target.value)}
-        />
-
+        <BlockTitle title="NOUVEAU BON" />
         <Box
           sx={{
-            textAlign: "center",
-            alignItems: "center",
             display: "flex",
-            width: "auto",
-            mt: 2
+            justifyContent: "space-evenly",
+            flexDirection: { xs: "column", md: "row" },
+            gap: 2
           }}
         >
-          <Button variant="outlined" sx={{ ml: 2 }} onClick={onResetTable}>
+          <Box>
+            <Typography sx={{ p: 2 }}>Nbr. SACS SUR BON</Typography>
+            <input
+              type="number"
+              value={newNumSacs}
+              onChange={(e) => setNewNumSacs(e.target.value)}
+            />
+            {newNumSacs > 0 && (
+              <Button sx={{ ml: 2 }} onClick={onAddNewBon}>
+                AJOUTER
+              </Button>
+            )}
+          </Box>
+
+          <Box>
+            <Typography sx={{ p: 2 }}>HEURE DE SERVICE</Typography>
+            <Box sx={{ textaltextAlign: "center" }}>
+              <FormControl>
+                <FormLabel id="demo-radio-buttons-group-label"></FormLabel>
+                <RadioGroup
+                  sx={{ display: "flex", flexDirection: "row" }}
+                  aria-labelledby="demo-radio-buttons-group-label"
+                  defaultValue="female"
+                  name="radio-buttons-group"
+                >
+                  <FormControlLabel
+                    defaultChecked
+                    value={HEURES_DE_SERV.MATIN.val}
+                    control={<Radio />}
+                    label={HEURES_DE_SERV.MATIN.name}
+                    onChange={onHeureDeServiceChange}
+                  />
+                  <FormControlLabel
+                    onChange={onHeureDeServiceChange}
+                    value={HEURES_DE_SERV.APREM.val}
+                    control={<Radio />}
+                    label={HEURES_DE_SERV.APREM.name}
+                  />
+                  <FormControlLabel
+                    onChange={onHeureDeServiceChange}
+                    value={HEURES_DE_SERV.NUIT.val}
+                    control={<Radio />}
+                    label={HEURES_DE_SERV.NUIT.name}
+                  />
+                </RadioGroup>
+              </FormControl>
+              <Typography variant="h4">
+                {curHeureDeService.from} - {curHeureDeService.to}
+              </Typography>
+            </Box>
+          </Box>
+
+          <Box>
+            <Typography sx={{ p: 2 }}>CAMIONS RESTANTS</Typography>
+            <input
+              type="number"
+              value={camionsRest}
+              defaultValue={0}
+              onChange={(e) => setCamionsRest(e.target.value)}
+            />
+          </Box>
+        </Box>
+
+        <BlockTitle title="TABLEAU DE BONS" />
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: {
+              xs: "column",
+              md: "row",
+              gap: 2,
+              justifyContent: "space-evenly"
+            }
+          }}
+        >
+          <Button
+            variant="outlined"
+            sx={{ ml: 2, width: "auto" }}
+            onClick={onResetTable}
+          >
             RESET TABLE
+          </Button>
+
+          <Button
+            variant="outlined"
+            sx={{ width: { xs: "auto" } }}
+            onClick={onShowRepport}
+          >
+            VIEW REPPORT
           </Button>
 
           <Box sx={{ ml: 2, mr: 2 }}>
             <div>
-              Show/Hide Table{" "}
+              SHOW/HIDE REPPORT TABLE{" "}
               <Checkbox
                 defaultChecked
                 value={showTable}
@@ -146,11 +176,8 @@ function SectionNewRepport({
               />
             </div>
           </Box>
-
-          <Button variant="outlined" sx={{}} onClick={onShowRepport}>
-            SHOW REPPORT
-          </Button>
         </Box>
+
         {showTable === true && (
           <TableListBons
             sx={{ mt: 2 }}
@@ -234,6 +261,10 @@ export default function PageHomeSuperVisor({ currentUser, selectedTeam }) {
     setOpen(true);
   };
 
+  const onSaveRepport = (e) => {
+    alert(e);
+  };
+
   return (
     <div>
       <ItemPageTitle
@@ -292,7 +323,7 @@ export default function PageHomeSuperVisor({ currentUser, selectedTeam }) {
                 班{selectedTeam.id.toUpperCase()}(Équipe{" "}
                 {selectedTeam.id.toUpperCase()})
               </Typography>
-              <Typography> • {"白班"} •</Typography>
+              <Typography> • {curHeureDeService.ban} •</Typography>
               <Typography>
                 {" "}
                 从{curHeureDeService.from}到{curHeureDeService.to}
@@ -304,7 +335,7 @@ export default function PageHomeSuperVisor({ currentUser, selectedTeam }) {
             </DialogContentText>
           </DialogContent>
           <DialogActions>
-            <Button>Copier</Button>
+            <Button onClick={onSaveRepport} />
             <Button onClick={handleClose} autoFocus>
               Okay
             </Button>

@@ -97,9 +97,9 @@ const ERROR_MESSAGES = {
 };
 
 const HEURES_DE_SERV = {
-  mat: { from: "07:00", to: "15:00" },
-  apr: { from: "15:00", to: "23:00" },
-  nui: { from: "23:00", to: "07:00" },
+  mat: { from: "07:00", to: "15:00", ban: "白班/MATIN" },
+  apr: { from: "15:00", to: "23:00", ban: "中班/APREM" },
+  nui: { from: "23:00", to: "07:00", ban: "夜班/NUIT" },
   MATIN: { val: "mat", name: "白班/MATIN" },
   APREM: { val: "apr", name: "中班/APREM" },
   NUIT: { val: "nui", name: "夜班/NUIT" }

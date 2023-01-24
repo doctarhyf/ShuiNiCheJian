@@ -8,12 +8,14 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
+import BlockTitle from "../comps/BlockTitle";
 
 import Box from "@mui/material/Box";
 
 export default function RepportHUD({ bons, totSacs }) {
   return (
     <Box>
+      <BlockTitle title="MINI REPPORT" />
       <TableContainer sx={{ mt: 2 }} component={Paper}>
         <Table sx={{}} aria-label="simple table">
           <TableRow sx={{ fontWeight: "bold" }}>
@@ -21,7 +23,7 @@ export default function RepportHUD({ bons, totSacs }) {
               TOTAL ({bons.length} Camions )
             </TableCell>
             <TableCell>{totSacs} Sacs</TableCell>
-            <TableCell>{totSacs * 50} T</TableCell>
+            <TableCell>{(totSacs * 50) / 1000} T</TableCell>
           </TableRow>
         </Table>
       </TableContainer>
