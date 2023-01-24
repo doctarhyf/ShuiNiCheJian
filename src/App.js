@@ -33,6 +33,7 @@ export default function App() {
     setLoginErrorMessage("");
     const userData = USERS[phone];
     setCurrentUser(userData);
+
     //user exist checking password
 
     const passwordIsCorrect = password === userData.password;
@@ -41,17 +42,22 @@ export default function App() {
       return;
     }
 
-    alert(JSON.stringify(userData));
+    //alert(`userData:.\n\n${JSON.stringify(userData)}`)
 
-    //if (true) return;
+    TEAMS.map((ct, idx) => {
+      if (userData.phone === ct.sup.phone) {
+        setSelectedTeam(ct);
+      }
+    });
+    //
 
-    //logged in
+    //alert(`selected team\n\n.${JSON.stringify(selectedTeam)}`);
+
+    //if(true) return;
     setLoginErrorMessage("");
     userData.role === USER_ROLE.INTERPRETE
       ? gotoPage(PAGES.HOME_INTERPRETE)
       : gotoPage(PAGES.HOME_SUPERVISOR);
-
-    //alert('sup not found!')
   };
 
   const gotoPage = (page) => {
